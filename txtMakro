@@ -1,0 +1,30 @@
+Option Explicit
+
+Sub exportTxtFile()
+    Dim fd As FileDialog
+    Dim i, j, columnCount As Integer
+    Dim rowCount As Long
+    Dim tblName, myFile, myFileName As String
+    
+    tblName = "Tabelle1"
+    myFileName = "\test" & ".txt"
+    
+    myFile = Application.DefaultFilePath & myFileName
+    
+    Open myFile For Output As #1
+    
+    With ThisWorkbook.Worksheets(tblName)
+        rowCount = .Cells(Rows.Count, 1).End(xlUp).Row
+        columnCount = .Cells(1, Columns.Count).End(xlToLeft).Column
+    
+        For i = 1 To rowCount
+            For j = 1 To columnCount
+                If j = columnCount Then
+                    Write #1, .Cells(i, j).Value
+                Else
+                    Write #1, .Cells(i, j).Value,
+                End If
+            Next j
+        Next i
+    End With
+    
