@@ -1,7 +1,6 @@
 Option Explicit
 
 Sub exportTxtFile()
-    Dim fd As FileDialog
     Dim i, j, columnCount As Integer
     Dim rowCount As Long
     Dim tblName, myFile, myFileName As String
@@ -28,3 +27,5 @@ Sub exportTxtFile()
         Next i
     End With
     
+    Close #1
+End Sub
